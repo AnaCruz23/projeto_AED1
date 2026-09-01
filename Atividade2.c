@@ -1,3 +1,4 @@
+
 #include "raylib.h"
 #include <stdlib.h>
 #include <time.h>
@@ -114,7 +115,7 @@ int main(void) {
             Bola *temp=(Bola*)realloc(bolas, quantidadeBolas * sizeof(Bola));
             if(temp != NULL){
                 bolas=temp;
-                // inicializa apenas a nova bola do último índice
+                // inicializaapenas a nova bola do último índice
                 inicializarBola(&bolas[quantidadeBolas - 1]);
 
             }else{
