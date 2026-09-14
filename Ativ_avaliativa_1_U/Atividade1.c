@@ -13,10 +13,6 @@ typedef struct {
     Color   cor;
 } Bola;
 
-/* ---------------------------------------------------------------
- * Inicializa os atributos de UMA única bola.
- * Recebe o ponteiro para a struct para modificar o dado original.
- * --------------------------------------------------------------- */
 void inicializarBola(Bola *b) {
     b->pos = (Vector2){ (float)GetRandomValue(50, LARGURA_JANELA - 50),
                         (float)GetRandomValue(50, ALTURA_JANELA - 50) };
@@ -27,10 +23,7 @@ void inicializarBola(Bola *b) {
                        GetRandomValue(100, 255), 255 };
 }
 
-/* ---------------------------------------------------------------
- * Cria uma MATRIZ dinâmica de inteiros (linhas x colunas)
- * Retorna um ponteiro para ponteiro (int **).
- * --------------------------------------------------------------- */
+
 int **criarMatriz(int linhas, int colunas) {
     int **matriz = (int **)malloc(linhas * sizeof(int *));
     if (matriz == NULL) return NULL;
@@ -64,9 +57,7 @@ void desenharMatriz(int **matriz, int linhas, int colunas) {
     }
 }
 
-/* ---------------------------------------------------------------
- * Cria o vetor dinâmico de bolas alocando um bloco único de memória
- * --------------------------------------------------------------- */
+
 Bola *criarBolas(int quantidade) {
     Bola *bolas = (Bola *)malloc(quantidade * sizeof(Bola));
     if (bolas == NULL) return NULL;
@@ -104,7 +95,7 @@ int main(void) {
 
     while (!WindowShouldClose()) {
 
-        // TECLA ESPAÇO: Adicionar nova bola usando realloc (Exercício 1)
+        // TECLA ESPAÇO: Adicionar nova bola usando realloc 
         if (IsKeyPressed(KEY_SPACE)) {
             quantidadeBolas++;
             Bola *temp = (Bola *)realloc(bolas, quantidadeBolas * sizeof(Bola));
@@ -116,7 +107,7 @@ int main(void) {
             }
         }
 
-        // TECLA BACKSPACE: Remover última bola ajustando a memória (Exercício 1)
+        // TECLA BACKSPACE: Remover última bola ajustando a memória 
         if (IsKeyPressed(KEY_BACKSPACE) && quantidadeBolas > 0) {
             quantidadeBolas--;
 
