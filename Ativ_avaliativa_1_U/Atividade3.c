@@ -132,7 +132,7 @@ int main(void) {
     SetTargetFPS(60);
 
     Jogador jogador = { { LARGURA_JANELA / 2.0f, ALTURA_JANELA / 2.0f }, RAIO_JOGADOR, 100, 5.0f, 0 };
-    Item *itens = criarItens(TOTAL_ITENS); // vetor dinâmico de struct com union
+    Item *itens = criarItens(TOTAL_ITENS); 
 
     while (!WindowShouldClose()) {
 
@@ -145,7 +145,7 @@ int main(void) {
         for (int i = 0; i < TOTAL_ITENS; i++) {
             Item *it = (itens + i);
             if (!it->coletado && colidiu(jogador.pos, jogador.raio, it->pos, it->raio)) {
-                aplicarItem(&jogador, it); // &jogador: ponteiro para struct
+                aplicarItem(&jogador, it); 
             }
         }
 
