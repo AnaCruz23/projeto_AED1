@@ -1,3 +1,4 @@
+
 #include "raylib.h"
 #include <stdlib.h>
 #include <time.h>
@@ -13,13 +14,15 @@
 typedef enum {
     ENTIDADE_JOGADOR,
     ENTIDADE_INIMIGO,
-    ENTIDADE_ITEM
+    ENTIDADE_ITEM,
+    ENTIDADE_CURA
 } TipoEntidade;
 
 /* union: só um destes campos faz sentido por vez, dependendo do tipo */
 typedef union {
     int dano;   // usado quando tipo == ENTIDADE_INIMIGO
-    int valor;  // usado quando tipo == ENTIDADE_ITEM
+    int valor;  
+    int cura;// usado quando tipo == ENTIDADE_ITEM
 } ExtraEntidade;
 
 typedef struct {
@@ -31,8 +34,9 @@ typedef struct {
     ExtraEntidade extra;
 } Entidade;
 
-
-Entidade *vetorEntidades[MAX_ENTIDADES]; //vetores de ponteiro para struct
+// vetor de PONTEIROS para struct: cada posição aponta para um bloco
+// alocado individualmente com malloc (não é um bloco contíguo único)
+Entidade *vetorEntidades[MAX_ENTIDADES];
 int totalEntidades = 0;
 
 void ordenarEntidadeMaisProxima( Entidade *jogador){
@@ -80,12 +84,20 @@ Entidade *criarEntidade(TipoEntidade tipo, Vector2 pos) {
             e->cor        = MAROON;
             e->extra.dano = GetRandomValue(5, 15);
             break;
-        case ENTIDADE_ITEM:
+            int chance = GetRandomValue(0,9);
+       case ENTIDADE_ITEM:
             e->vida        = 1;
             e->cor         = GOLD;
             e->extra.valor = GetRandomValue(5, 20);
             break;
-    }
+        case ENTIDADE_CURA:
+            e->vida =1;
+            e->cor = GREEN;
+            e->extra.cura = GetRandomValue(5,10);
+
+        break;
+        }
+    
     return e;
 }
 

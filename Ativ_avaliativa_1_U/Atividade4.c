@@ -62,7 +62,7 @@ Inimigo *encontrarInimigoMaisProximo(Inimigo *vetor, int n, Vector2 posJogador) 
     float menorDistancia = 0.0f;
 
     for (int i = 0; i < n; i++) {
-        Inimigo *ini = (vetor + i);
+        Inimigo *ini = (vetor + i); //struct de vetor
         if (ini->estado == INIMIGO_MORTO) continue;
 
         float dx = ini->pos.x - posJogador.x;
